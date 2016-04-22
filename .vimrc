@@ -2,16 +2,6 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-call vundle#end()            " required
-filetype plugin indent on    " required
-Bundle 'Valloric/YouCompleteMe'
 " An example for a gvimrc file.
 " The commands in this are executed when the GUI is started.
 "
@@ -77,14 +67,16 @@ if version >= 500
   set cursorline
   "autocmd InsertEnter * se cul
 
-  set smartindent
-  set autoindent
-
-  set tabstop=4
   set expandtab
+  set tabstop=4
 
   set softtabstop=4
   set shiftwidth=4
+
+  set smartindent
+  set autoindent
+  set cindent
+
 
   set number
 
@@ -107,9 +99,22 @@ if version >= 500
   
   set scrolloff=5
 
+  "disable arrow keys
+  noremap <Up> <NOP>
+  noremap <Down> <NOP>
+  noremap <Left> <NOP>
+  noremap <Right> <NOP>
+  "disable h,j,k,l
+
+  "nnoremap ge $ 
+  "nnoremap <C-l> $ 
+  "nnoremap gb ^
+  "nnoremap <C-h> ^
+
   "move vertically by visual line
   nnoremap j gj
   nnoremap k gk
+
   "map leader
   let mapleader=","
   "Window management settings
@@ -120,10 +125,26 @@ if version >= 500
   nnoremap <C-k> <C-w>k
   nnoremap <C-l> <C-w>l
 
+  "blcok action
+  nnoremap <C-b> <C-v>
+
+  "move to the end of the line
+  nnoremap ee $
+  nnoremap bb ^
+  "disable ^,$
+  nnoremap $ <NOP>
+  nnoremap ^ <NOP>
+  "esc
+  inoremap jk <esc>
+  vnoremap jk <esc>
+
   "open new blank file
+
   "nnoremap o<C-h> :lefta vsp new<cr>
   "nnoremap o<C-j> :bel sp new<cr>
   "nnoremap o<C-k> :abo sp new<cr>
   "nnoremap o<C-l> :rightb vsp new<cr>
 
+  "colorscheme
+  colorscheme koehler
 endif
